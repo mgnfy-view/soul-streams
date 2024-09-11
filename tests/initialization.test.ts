@@ -1,14 +1,43 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
+import { assert } from "chai";
 import { SoulStreams } from "../target/types/soul_streams";
 
+import { setup } from "./utils/setup";
+import { seedStrings } from "./utils/constants";
+
 describe("Soul Streams", () => {
-    const provider = anchor.AnchorProvider.env();
-    anchor.setProvider(provider);
+    let program: Program<SoulStreams>;
 
-    const program = anchor.workspace.SoulStreams as Program<SoulStreams>;
+    before(async () => {
+        ({ program } = await setup());
+    });
 
-    it("Is initialized!", async () => {
+    it("Is initialized and emits event", async () => {
+        const expectedStreamCountValue = 1;
+
+        // Listen for the initialized event
+        const initializedEventListener = program.addEventListener("initialized", (event) => {
+            const streamCountValue = event.streamCount.toNumber();
+
+            console.log(`\tInitialization emitted event with value: ${streamCountValue}`);
+            assert.equal(streamCountValue, expectedStreamCountValue);
+        });
+
         await program.methods.initialize().rpc();
+
+        // Retrieve the stream count pda
+        const streamCountPublicKey = anchor.web3.PublicKey.findProgramAddressSync(
+            [Buffer.from(seedStrings.streamCount)],
+            program.programId
+        )[0];
+        const streamCountAccount = await program.account.streamCount.fetch(streamCountPublicKey);
+
+        // Check if the stream count account has count value set to 0
+        const streamCountValue = streamCountAccount.count.toNumber();
+        console.log(`\tStream count pda was initialized with count value: ${streamCountValue}`);
+        assert.equal(streamCountValue, expectedStreamCountValue);
+
+        program.removeEventListener(initializedEventListener);
     });
 });
