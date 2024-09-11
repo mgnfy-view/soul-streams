@@ -39,4 +39,10 @@ pub struct StreamCanceled {
 #[event]
 pub struct StreamReplenished {
     pub stream: Pubkey,
+    pub payer: Pubkey,
+    pub payee: Pubkey,
+    pub mint: Pubkey,
+    pub amount: u64,
+    pub starting_timestamp: u64,
+    pub duration: u64,
 }

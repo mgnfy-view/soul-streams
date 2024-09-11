@@ -303,7 +303,13 @@ pub mod soul_streams {
         )?;
 
         emit!(events::StreamReplenished {
-            stream: stream.key()
+            stream: stream.key(),
+            payer: ctx.accounts.payer.key(),
+            payee,
+            mint: ctx.accounts.mint.key(),
+            amount: new_amount,
+            starting_timestamp: new_starting_timestamp,
+            duration: new_duration
         });
 
         Ok(())
