@@ -14,15 +14,29 @@ pub struct NewStreamCreated {
     pub amount: u64,
     pub starting_timestamp: u64,
     pub duration: u64,
+    pub count: u64,
 }
 
 #[event]
 pub struct AmountWithdrawnFromStream {
     pub stream: Pubkey,
-    pub amount: u64,
+    pub payer: Pubkey,
+    pub payee: Pubkey,
+    pub mint: Pubkey,
+    pub amount_withdrawn: u64,
+    pub count: u64,
 }
 
 #[event]
 pub struct StreamCanceled {
+    pub stream: Pubkey,
+    pub payer: Pubkey,
+    pub payee: Pubkey,
+    pub mint: Pubkey,
+    pub count: u64,
+}
+
+#[event]
+pub struct StreamReplenished {
     pub stream: Pubkey,
 }
