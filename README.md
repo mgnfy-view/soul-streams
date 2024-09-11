@@ -18,8 +18,6 @@
   <p align="center">
     Soul streams is a payment streaming service on the Solana blockchain
     <br />
-    <a href="https://github.com/mgnfy-view/soul-streams/tree/main/docs"><strong>Explore the docs »</strong></a>
-    <br />
     <a href="https://github.com/mgnfy-view/soul-streams/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/mgnfy-view/soul-streams/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -54,7 +52,7 @@
 
 ## About The Project
 
-Soul streams is a payment streaming service on the Solana blockchain. It allows anyone to create payment streams directed to any wallet and fund it with SPL tokens. The tokens are unlocked for the payee linearly over time. Additionally, the stream creator can cancel the stream at any point of time. This transfers the remaining balance of the stream back to the payer. The creator can also replenish a stream and start streaming tokens to the same recipient again.
+Soul streams is a payment streaming service on Solana. It allows anyone to create payment streams directed to any wallet and fund it with SPL tokens. The tokens are unlocked for the payee linearly over time. Additionally, the payer can cancel the stream at any point of time which transfers the remaining balance of the stream back to them. The payer can also replenish their stream to start streaming tokens to the same payee again.
 
 ### Built With
 
@@ -83,6 +81,7 @@ cd into the repo, and install the necessary dependencies
 
 ```shell
 cd soul-streams
+yarn install
 anchor build
 ```
 
@@ -98,9 +97,8 @@ That's it, you are good to go now!
 
 ## Roadmap
 
--   [ ] Solana program development
+-   [x] Solana program development
 -   [ ] Unit tests
--   [ ] Write Docs
 -   [x] Write a good README.md
 
 See the [open issues](https://github.com/mgnfy-view/soul-streams/issues) for a full list of proposed features (and known issues).
