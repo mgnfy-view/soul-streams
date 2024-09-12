@@ -5,6 +5,7 @@ import { SoulStreams } from "../target/types/soul_streams";
 
 import { setup } from "./utils/setup";
 import { seedStrings } from "./utils/constants";
+import { getStreamCountPublicKey } from "./utils/utils";
 
 describe("Soul Streams", () => {
     let program: Program<SoulStreams>;
@@ -27,10 +28,7 @@ describe("Soul Streams", () => {
         await program.methods.initialize().rpc();
 
         // Retrieve the stream count pda
-        const streamCountPublicKey = anchor.web3.PublicKey.findProgramAddressSync(
-            [Buffer.from(seedStrings.streamCount)],
-            program.programId
-        )[0];
+        const streamCountPublicKey = getStreamCountPublicKey(program.programId);
         const streamCountAccount = await program.account.streamCount.fetch(streamCountPublicKey);
 
         // Check if the stream count account has count value set to 0
