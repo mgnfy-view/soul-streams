@@ -52,7 +52,7 @@
 
 ## About The Project
 
-Soul streams is a payment streaming service on Solana. It allows anyone to create payment streams directed to any wallet and fund it with SPL tokens. The tokens are unlocked for the payee linearly over time. Additionally, the payer can cancel the stream at any point of time which transfers the remaining balance of the stream back to them. The payer can also replenish their stream to start streaming tokens to the same payee again.
+Soul streams is a payment streaming service on Solana. It allows anyone to create payment streams directed to any wallet and fund it with SPL tokens. The tokens are unlocked for the payee linearly over time. Additionally, the payer can cancel the stream which transfers the remaining balance of the stream back to them. The payer can also replenish their stream to start streaming tokens to the same payee again.
 
 ### Built With
 
@@ -98,7 +98,7 @@ That's it, you are good to go now!
 ## Roadmap
 
 -   [x] Solana program development
--   [ ] Unit tests
+-   [x] Unit tests
 -   [x] Write a good README.md
 
 See the [open issues](https://github.com/mgnfy-view/soul-streams/issues) for a full list of proposed features (and known issues).
