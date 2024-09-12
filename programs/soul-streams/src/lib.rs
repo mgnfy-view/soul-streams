@@ -266,7 +266,7 @@ pub mod soul_streams {
                     ctx.accounts.token_program.to_account_info(),
                     Transfer {
                         from: ctx.accounts.stream_token_account.to_account_info(),
-                        to: ctx.accounts.payer_token_account.to_account_info(),
+                        to: ctx.accounts.payee_token_account.to_account_info(),
                         authority: ctx.accounts.stream_token_account.to_account_info(),
                     },
                     &stream_token_account_signer,
